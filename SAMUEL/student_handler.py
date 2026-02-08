@@ -126,7 +126,6 @@ def check_student_has_course(student_id, course):
     student_courses = get_student_by_id(student_id)["student_info"].get("Courses")
     return course in student_courses
 
-
 def get_student_info(student_id):
     student_info = get_student_by_id(student_id)
     return f"""

@@ -1,173 +1,90 @@
-import re
-
-from SAMUEL.university_record_helper import *
-
-def validate_name(name):
-    return bool(re.fullmatch(r"[A-Za-z ]{2,30}", name))
-
-def validate_student_id(student_id):
-    return bool(re.fullmatch(r"[A-Za-z0-9]{3,10}", student_id))
-
-def validate_city(city):
-    return bool(re.fullmatch(r"[A-Za-z ]{2,30}", city))
-
-def validate_zip_code(zip_code):
-    return bool(re.fullmatch(r"\d{5,6}", zip_code))
-
-
-def create_student():
-    student_name = input("Enter student name: ").capitalize()
-    while not validate_name(student_name):
-        student_name = input("Name must be all alphabet: ").capitalize()
-
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while id_exists(student_id):
-        student_id = input("Id already exist choose another: ").strip()
-
-    student_age = input("Enter student age: ").strip()
-    while not student_age.isdigit() and 0 < int(student_age) < 50:
-        student_age = input("Enter valid age: ").strip()
-
-    student_city = input("Enter student city: ").strip().upper()
-    while not validate_city(student_city):
-        student_city = input("city must be all alpha: ").strip().upper()
-
-    student_zip_code = input("Enter student zip code: ").strip()
-    while not validate_zip_code(student_zip_code):
-        student_zip_code = input("zip code must be between 5 and 6 digits only: ")
-    create_students(student_name,student_age,student_id,student_city,student_zip_code)
-
-
-
-def update_student_name():
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while not id_exists(student_id):
-        student_id = input("Id do not exist, enter valid id: ").strip()
-
-    student_name = input("Enter student name: ").capitalize()
-    while not validate_name(student_name):
-        student_name = input("Name must be all alphabet: ").capitalize()
-    update_students_name(student_id,student_name)
-
-
-def update_student_age():
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while not id_exists(student_id):
-        student_id = input("Id do not exist, enter valid id ").strip()
-
-    student_age = input("Enter student age: ").strip()
-    while not student_age.isdigit() and 0 < int(student_age) < 50:
-        student_age = input("Enter valid age: ").strip()
-    update_students_age(student_id,student_age)
-
-
-def update_student_city():
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while not id_exists(student_id):
-        student_id = input("Id do not exist, enter valid id: ").strip()
-
-    student_city = input("Enter student city: ").strip().upper()
-    while not validate_city(student_city):
-        student_city = input("city must be all alpha: ").strip().capitalize()
-    update_students_city(student_id,student_city)
-
-
-def update_student_zip_code():
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while  not id_exists(student_id):
-        student_id = input("Id do not exist, enter valid id: ").strip()
-
-    student_zip_code = input("Enter student zip code: ").strip()
-    while not validate_zip_code(student_zip_code):
-        student_zip_code = input("zip code must be between 5 and 6 digits only: ")
-    update_students_zip_code(student_id,student_zip_code)
-
-
-def add_course():
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while not id_exists(student_id):
-        student_id = input("Id do not exist, enter valid id:  ").strip()
-
-    course = input("Enter subject name: ").capitalize()
-    while not validate_name(course):
-        course = input("Must be all alphabet!! Enter again: ").capitalize()
-    add_students_course(student_id,course)
-
-def update_course():
-    student_id = input("Enter student id: ").strip()
-    while not validate_student_id(student_id):
-        student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
-
-    while not id_exists(student_id):
-        student_id = input("Id do not exist, enter valid id:  ").strip()
-
-    old_course = input("Enter former subject name: ").capitalize()
-    while not validate_name(old_course):
-        course = input("Must be all alphabet!! Enter again: ").capitalize()
-
-
-
-    new_course = input("Enter New subject name: ").capitalize()
-    while not validate_name(new_course):
-        course = input("Must be all alphabet!! Enter again: ").capitalize()
-    update_students_course(student_id,old_course,new_course)
-
-
-
-
-
-update_course()
-display_students_records()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+from unittest import case
+
+from SAMUEL.university_record_input_handler import *
+
+
+def menu():
+    menu = """
+=============================
+UNIVERSITY MANAGEMENT SYSTEM  
+-----------------------------
+1.  Add Student
+2.  Add Student Course
+3.  Update Students info
+4.  View Students Info
+5.  View all Available Student Record
+0.  Exit
+---------------------------
+    """
+    return menu
+
+def update_submenu():
+    menu = """
+===========================
+    UPDATE SUBMENU
+---------------------------
+1.  Update Student Name
+2.  Update Student Zip Code
+3.  Update Student City
+4.  Update Student Age
+5.  Update Student Course
+6.  Back
+----------------------------
+    """
+    return menu
+
+def get_submenu():
+    menu = """
+=============================
+    VIEW STUDENT INFO
+-----------------------------
+1. Get Student City
+2. Get Student Course
+3. Get Student Zip Code
+4. Get Numbers Of Students
+5. Get Individual Student Records
+6. Back
+---------------------------------
+    """
+    return menu
+
+
+def display_menu():
+    option = 1
+    while option != 0:
+        print(menu())
+        option = int(input("Enter your choice: "))
+        match option:
+            case 1: create_student()
+            case 2: add_course()
+            case 3:
+                sub_option = 1
+                while sub_option != 9:
+                    print(update_submenu())
+                    sub_option = int(input("Enter your choice: "))
+                    match sub_option:
+                        case 1: update_student_name()
+                        case 2: update_student_zip_code()
+                        case 3: update_student_city()
+                        case 4: update_student_age()
+                        case 5: update_course()
+                        case 6: break
+            case 4:
+                sub_option = 1
+                while sub_option != 5:
+                    print(get_submenu())
+                    sub_option = int(input("Enter your choice: "))
+                    match sub_option:
+                        case 1: get_student_city()
+                        case 2: get_student_courses()
+                        case 3: get_student_zip_code()
+                        case 4: get_number_of_students()
+                        case 5: get_student_info()
+                        case 6: break
+            case 4: display_students_records()
+            case 5: display_menu()
+            case 0: option == 0
+    print("Exiting....")
+
+
+display_menu()

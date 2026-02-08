@@ -12,7 +12,7 @@ def display_students_records():
         student_id = student["Unique_user_ID"]
         print(get_student_info(student_id))
 
-def display_student_subject(student_id):
+def display_student_courses(student_id):
     if id_exist(student_id):
         print(f"Courses offered by student {student_id.upper()}")
         print("------------------------------")
@@ -99,8 +99,20 @@ def update_students_zip_code(student_id, zip_code):
         print("------------------------------")
         print("student does not exist")
 
-
 def numbers_of_students():
     print("----------------------------------------")
     print("The numbers of student available: ",len(university_record))
 
+def display_individual_info(student_id):
+    if id_exist(student_id):
+        info = get_student_info(student_id)
+        print("------------------------------")
+        print(info)
+    else:
+        print("------------------------------")
+        print("student does not exist")
+
+
+
+def display_departmental_courses():
+    print(f"{list(available_courses)}")

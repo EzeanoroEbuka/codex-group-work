@@ -25,7 +25,6 @@ class TestStudentManagement(unittest.TestCase):
 
         student_module.university_record.append(demo_student)
 
-    # ---------- UPDATE STUDENT ----------
 
     def test_update_student_name_changes_name(self):
         update_student_name("id1", "Sam")
