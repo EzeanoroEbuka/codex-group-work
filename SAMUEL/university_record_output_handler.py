@@ -1,4 +1,4 @@
-from SAMUEL.student_handler import *
+from SAMUEL.student_and_university_services import *
 
 def id_exist(student_id):
     return id_exists(student_id)

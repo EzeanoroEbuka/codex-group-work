@@ -1,6 +1,6 @@
 import re
 
-from SAMUEL.university_record_handler import *
+from SAMUEL.university_record_output_handler import *
 
 def validate_name(name):
     return bool(re.fullmatch(r"[A-Za-z ]{2,30}", name))
