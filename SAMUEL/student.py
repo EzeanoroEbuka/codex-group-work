@@ -5,6 +5,22 @@ available_courses = {"Math", "Physics", "Computer Science", "Biology", "Chemistr
                     "Sociology", "Political Science", "Geography", "Psychology", "Art",
                     "Music", "Engineering", "Law", "Medicine", "Business"}
 
+
+student_Info = {
+    "Unique_user_ID": "id",
+    "student_info": {
+        "Name": "Samuel",
+        "Age": "20",
+        "Courses": {"Mathematic", "English", "Yoruba"},
+        "Department": "COMPUTER SCIENCE",
+        "Address": {
+            "City": "Lagos",
+            "Zip_code": "202022",
+        },
+    }
+}
+university_record.append(student_Info)
+
 def create_student(student_name, student_age, student_id, city, zip_code):
     student = {
         "Unique_user_ID": "student_id",
@@ -39,6 +55,9 @@ def get_student_by_name(student_name):
         if student["student_info"]["Student_Name"] == student_name:
             return student
     return None
+
+def get_student_courses(student_id):
+    return get_student_by_id(student_id)["student_info"].get("Courses")
 
 def update_student_name(student_id, student_new_name):
     get_student_by_id(student_id)["student_info"]["Name"] = student_new_name
@@ -81,32 +100,17 @@ def check_student_has_course(student_id, course):
     return course in student_courses
 
 
-
-student_info ={
-    "Unique_user_ID": "id",
-    "student_info" :  {
-             "Name": "kay",
-             "Age": 20,
-             "Courses": set(),
-             "Department": "COMPUTER SCIENCE",
-             "Address": {
-                 "City": "LAGOS STATE",
-                 "Zip_code": "55050",
-             },
-         }
-     }
+def get_student_info(student_id):
+    student_info = get_student_by_id(student_id)
+    return f"""
+Student ID:  {student_id:>2}   
+NAME:  {student_info["student_info"]["Name"]:>12}
+AGE:  {student_info["student_info"]['Age']:>9}
+COURSES:  \t{student_info["student_info"]['Courses']}
+DEPARTMENT:  {student_info["student_info"]['Department']:>7}
+CITY: {student_info["student_info"]['Address']['City']:>12}
+ZIP_CODE: {student_info["student_info"]['Address']['Zip_code']:>9}
+"""
 
 
-university_record.append(student_info)
-#
-#
-#
-update_student_name("id","Ayobami")
-update_student_age("id",90)
-print(add_student_courses("id","nglish"))
-print(add_student_courses("id","English"))
-
-# print(delete_student_course("id","yoruba"))
-
-# print(course_available("Math"))
-
+print(get_student_info("id"))
