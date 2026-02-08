@@ -1,6 +1,6 @@
 import unittest
-import SAMUEL.student as student_module
-from SAMUEL.student import *
+import SAMUEL.student_handler as student_module
+from SAMUEL.student_handler import *
 
 
 class TestStudentManagement(unittest.TestCase):
@@ -54,8 +54,6 @@ class TestStudentManagement(unittest.TestCase):
             get_student_by_id("id1")["student_info"]["Address"]["Zip_code"],
             "111111"
         )
-
-
 
     def test_add_course_successfully(self):
         result = add_student_courses("id1", "Math")

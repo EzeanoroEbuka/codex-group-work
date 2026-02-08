@@ -1,7 +1,11 @@
-from SAMUEL.student import *
+from SAMUEL.student_handler import *
 
 def id_exist(student_id):
     return id_exists(student_id)
+
+def create_students(student_name, student_age, student_id, city, student_zip_code):
+    print(create_student(student_name, student_age, student_id, city, student_zip_code))
+
 
 def display_students_records():
     for student in university_record:
