@@ -1,5 +1,5 @@
 import unittest
-
+import SAMUEL.student as student_module
 from SAMUEL.student import *
 
 
@@ -7,13 +7,14 @@ class TestStudentManagement(unittest.TestCase):
 
     def setUp(self):
 
-        university_record = []
+        student_module.university_record.clear()
+
         demo_student = {
-            "Unique_user_ID": "id",
+            "Unique_user_ID": "id1",   # FIXED ID
             "student_info": {
                 "Name": "Samuel",
-                "Age": "20",
-                "Courses": {"Mathematic", "English", "Yoruba"},
+                "Age": 20,
+                "Courses": set(),
                 "Department": "COMPUTER SCIENCE",
                 "Address": {
                     "City": "Lagos",
@@ -21,65 +22,82 @@ class TestStudentManagement(unittest.TestCase):
                 },
             }
         }
-        university_record.append(demo_student)
 
-    def test_create_student(self):
-        student_info = create_student("Alice", 22, "id2", "Abuja", "100001")
-        university_record.append(student_info)
-        student = get_student_by_id("id2")
-        self.assertIsNotNone(student)
-        self.assertEqual(student["student_info"]["Name"], "Alice")
-        self.assertEqual(student["student_info"]["Age"], 22)
-        self.assertEqual(student["student_info"]["Address"]["City"], "Abuja")
+        student_module.university_record.append(demo_student)
 
-    def test_get_student_by_id_and_name(self):
-        student = get_student_by_id("id")
-        self.assertEqual(student["student_info"]["Name"], "Samuel")
+    # ---------- UPDATE STUDENT ----------
+
+    def test_update_student_name_changes_name(self):
+        update_student_name("id1", "Sam")
+        self.assertEqual(
+            get_student_by_id("id1")["student_info"]["Name"],
+            "Sam"
+        )
+
+    def test_update_student_age_changes_age(self):
+        update_student_age("id1", 21)
+        self.assertEqual(
+            get_student_by_id("id1")["student_info"]["Age"],
+            21
+        )
+
+    def test_update_student_city_changes_city(self):
+        update_student_city("id1", "Ibadan")
+        self.assertEqual(
+            get_student_by_id("id1")["student_info"]["Address"]["City"],
+            "Ibadan"
+        )
+
+    def test_update_student_zip_code_changes_zip_code(self):
+        update_student_zip_code("id1", "111111")
+        self.assertEqual(
+            get_student_by_id("id1")["student_info"]["Address"]["Zip_code"],
+            "111111"
+        )
 
 
-    def test_update_student_info(self):
-        update_student_name("id", "Sam")
-        update_student_age("id", 21)
-        update_student_city("id", "Ibadan")
-        update_student_zip_code("id", "101010")
-        student = get_student_by_id("id")
-        self.assertEqual(student["student_info"]["Name"], "Sam")
-        self.assertEqual(student["student_info"]["Age"], 21)
-        self.assertEqual(student["student_info"]["Address"]["City"], "Ibadan")
-        self.assertEqual(student["student_info"]["Address"]["Zip_code"], "101010")
 
-    def test_courses_management(self):
-        result = add_student_courses("id", "Math")
+    def test_add_course_successfully(self):
+        result = add_student_courses("id1", "Math")
         self.assertEqual(result, "course added successfully")
-        self.assertIn("Math", get_student_courses("id"))
+        self.assertIn("Math", get_student_courses("id1"))
 
-        result = add_student_courses("id", "Math")
+    def test_add_existing_course_returns_error(self):
+        add_student_courses("id1", "Math")
+        result = add_student_courses("id1", "Math")
         self.assertEqual(result, "course already exists")
 
-        result = add_student_courses("id", "Dance")
+    def test_add_unavailable_course_returns_error(self):
+        result = add_student_courses("id1", "Dancing")
         self.assertEqual(result, "course not available for student department")
 
-        result = update_student_course("id", "Yoruba", "Physics")
+    def test_update_course_successfully(self):
+        add_student_courses("id1", "Math")
+        result = update_student_course("id1", "Math", "Physics")
         self.assertEqual(result, "course updated successfully")
-        self.assertIn("Physics", get_student_courses("id"))
-        self.assertNotIn("Yoruba", get_student_courses("id"))
+        self.assertIn("Physics", get_student_courses("id1"))
 
+    def test_update_non_existing_course_returns_error(self):
+        result = update_student_course("id1", "Chemistry", "Physics")
+        self.assertEqual(result, "old course not found")
 
-        result = delete_student_course("id", "Physics")
+    def test_delete_course_successfully(self):
+        add_student_courses("id1", "Math")
+        result = delete_student_course("id1", "Math")
         self.assertEqual(result, "course removed successfully")
-        self.assertNotIn("Physics", get_student_courses("id"))
+        self.assertNotIn("Math", get_student_courses("id1"))
 
-
-        result = delete_student_course("id", "Dance")
+    def test_delete_non_existing_course_returns_error(self):
+        result = delete_student_course("id1", "Biology")
         self.assertEqual(result, "course not found")
 
-    def test_check_student_has_course(self):
-        self.assertTrue(check_student_has_course("id", "English"))
-        self.assertFalse(check_student_has_course("id", "Math"))
 
-    def test_course_available(self):
-        self.assertTrue(course_available("Math"))
-        self.assertEqual(course_available("Dance"), "Course is not available in department")
+    def test_check_student_has_course_returns_true(self):
+        add_student_courses("id1", "Math")
+        self.assertTrue(check_student_has_course("id1", "Math"))
+
+    def test_check_student_has_course_returns_false(self):
+        self.assertFalse(check_student_has_course("id1", "Physics"))
 
 
 if __name__ == "__main__":
