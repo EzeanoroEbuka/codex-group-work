@@ -36,6 +36,7 @@ def create_student(student_name, student_age, student_id, city, zip_code):
         }
     }
     university_record.append(student)
+    return student
 
 def course_available(course):
     if course in available_courses:
