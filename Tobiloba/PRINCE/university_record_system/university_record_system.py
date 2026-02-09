@@ -80,9 +80,9 @@ def add_new_course():
                 student_records[verify]["course"].append(add_course)
                 option = input("Do you want to add another course...Please enter yes or no: ").upper()
             else:
-                print(add_course.capitalize(), "Invalid or already exists")
+                print({add_course.capitalize()}, "Invalid or already exists")
     else:
-        print(verify, "Not Found")
+        print({verify}, "Not Found")
 
 
 def remove_student_course():
@@ -96,9 +96,9 @@ def remove_student_course():
                 student_records[verify]["course"].pop(remove_course)
                 option = input("Do you want to remove another course...Please enter yes or no: ").upper()
             else:
-                print(remove_course, "Invalid or doesnt exist")
+                print({remove_course}, "Invalid or doesnt exist")
     else:
-        print(verify, "Not Found")
+        print({verify}, "Not Found")
 
 
 def update_various_fields():
@@ -124,7 +124,7 @@ def update_various_fields():
                 print("Invalid option")
             exit_selection = input("Press 1 to continue or 0 to exit: ")
     else:
-        print(verify, "Not Found")
+        print({verify}, "Not Found")
 
 
 def display_number_of_students():

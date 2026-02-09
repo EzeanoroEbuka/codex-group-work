@@ -1,6 +1,6 @@
 import unittest
-import student_and_university_services as student_module
-from student_and_university_services import *
+import SAMUEL.student_and_university_services as student_module
+from SAMUEL.student_and_university_services import *
 
 
 class TestStudentManagement(unittest.TestCase):
