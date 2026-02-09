@@ -8,6 +8,9 @@ def create_students(student_name, student_age, student_id, city, student_zip_cod
 
 
 def display_students_records():
+    print("=============================")
+    print("  ALL STUDENTS RECORDS    ")
+    print("-----------------------------")
     for student in university_record:
         student_id = student["Unique_user_ID"]
         print(get_student_info(student_id))
