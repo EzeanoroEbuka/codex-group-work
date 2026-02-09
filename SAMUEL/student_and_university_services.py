@@ -5,9 +5,8 @@ available_courses = {"Math", "Physics", "Computer Science", "Biology", "Chemistr
                     "Sociology", "Political Science", "Geography", "Psychology", "Art",
                     "Music", "Engineering", "Law", "Medicine", "Business"}
 
-
 demo_student1 = {
-            "Unique_user_ID": "id1",   # FIXED ID
+            "Unique_user_ID": "id1",
             "student_info": {
                 "Name": "Samuel",
                 "Age": 20,
@@ -20,8 +19,9 @@ demo_student1 = {
             }
         }
 
+
 demo_student = {
-            "Unique_user_ID": "id2",   # FIXED ID
+            "Unique_user_ID": "id2",
             "student_info": {
                 "Name": "Samuel",
                 "Age": 20,
@@ -33,9 +33,9 @@ demo_student = {
                 },
             }
         }
-
-university_record.append(demo_student)
 university_record.append(demo_student1)
+university_record.append(demo_student)
+
 def create_student(student_name, student_age, student_id, city, zip_code):
     if id_exists(student_id): return "Id already exists"
     student = {
@@ -56,7 +56,8 @@ def create_student(student_name, student_age, student_id, city, zip_code):
 
 def id_exists(student_id):
     for students in university_record:
-        return students["Unique_user_ID"] == student_id
+        if students["Unique_user_ID"] == student_id:
+            return True
     return False
 
 
@@ -124,7 +125,6 @@ def delete_student_course(student_id, course):
 def check_student_has_course(student_id, course):
     student_courses = get_student_by_id(student_id)["student_info"].get("Courses")
     return course in student_courses
-
 
 def get_student_info(student_id):
     student_info = get_student_by_id(student_id)

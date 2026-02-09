@@ -1,6 +1,6 @@
 import unittest
-import SAMUEL.student as student_module
-from SAMUEL.student import *
+import SAMUEL.student_and_university_services as student_module
+from SAMUEL.student_and_university_services import *
 
 
 class TestStudentManagement(unittest.TestCase):
@@ -25,7 +25,6 @@ class TestStudentManagement(unittest.TestCase):
 
         student_module.university_record.append(demo_student)
 
-    # ---------- UPDATE STUDENT ----------
 
     def test_update_student_name_changes_name(self):
         update_student_name("id1", "Sam")
@@ -54,8 +53,6 @@ class TestStudentManagement(unittest.TestCase):
             get_student_by_id("id1")["student_info"]["Address"]["Zip_code"],
             "111111"
         )
-
-
 
     def test_add_course_successfully(self):
         result = add_student_courses("id1", "Math")

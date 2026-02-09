@@ -1,14 +1,18 @@
-from SAMUEL.student import *
+from SAMUEL.student_and_university_services import *
 
 def id_exist(student_id):
     return id_exists(student_id)
+
+def create_students(student_name, student_age, student_id, city, student_zip_code):
+    print(create_student(student_name, student_age, student_id, city, student_zip_code))
+
 
 def display_students_records():
     for student in university_record:
         student_id = student["Unique_user_ID"]
         print(get_student_info(student_id))
 
-def display_student_subject(student_id):
+def display_student_courses(student_id):
     if id_exist(student_id):
         print(f"Courses offered by student {student_id.upper()}")
         print("------------------------------")
@@ -95,8 +99,20 @@ def update_students_zip_code(student_id, zip_code):
         print("------------------------------")
         print("student does not exist")
 
-
 def numbers_of_students():
     print("----------------------------------------")
     print("The numbers of student available: ",len(university_record))
 
+def display_individual_info(student_id):
+    if id_exist(student_id):
+        info = get_student_info(student_id)
+        print("------------------------------")
+        print(info)
+    else:
+        print("------------------------------")
+        print("student does not exist")
+
+
+
+def display_departmental_courses():
+    print(f"{list(available_courses)}")

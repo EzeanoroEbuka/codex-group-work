@@ -20,14 +20,18 @@ def create_student_record(username, age, city, zip_code):
     }
     return student_record
 
-name = 'Fola'
-university_record[name] = create_student_record(name,21,'lagos',2134)
-university_record['Lola'] = create_student_record('Lola',17,'abuja',2774)
-print(university_record)
-print()
-subs = ['Law', 'Art']
-university_record['Fola']['courses'] = set(subs)
-print(university_record)
+def add_student_to_university_record(username,student_record):
+    university_record[username] = student_record
+
+def display_university_courses():
+    print('-------------- COURSES ---------------')
+    subject_count = 1
+    for course in university_courses():
+        print(course, end=', ')
+        if subject_count % 5 == 0:
+            print()
+        subject_count += 1
+    print()
 
 def display_university_record(student_username):
     print(university_record.get(student_username))
@@ -48,13 +52,11 @@ def add_new_course(student_username, course):
 def remove_course(student_username, course):
     university_record[student_username]['courses'].discard(course)
 
-def update_name_age_city_zip_code(student_username, age, city, zip_code):
-    university_record[student_username]['name'] = name
+def update_name_age_city_zip_code(student_username, new_name, age, city, zip_code):
+    university_record[student_username]['name'] = new_name
     university_record[student_username]['age'] = age
     university_record[student_username]['address']['city'] = city
     university_record[student_username]['address']['zip_code'] = zip_code
 
 def display_overall_number_of_students():
-    print(len(university_record))
-
-display_overall_number_of_students()
+    return len(university_record)
