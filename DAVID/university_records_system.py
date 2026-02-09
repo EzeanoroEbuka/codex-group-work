@@ -19,19 +19,22 @@ def creating_students(name, age,city,zip_code,username,courses ):
     # student_record.append(student)
     #
 
-def display_all_student_records():
-    for key, value in student_details:
-        print(key,":",value)
+
 
 
 def display_student_records(username):
-    return student_details.get(username)
+        student = student_details.get(username)
+        if student is None:
+            return "Student not found"
+        return student
+
 
 def display_student_courses(username):
+    courses = student_details.get(username)
     return student_details[username]["courses"]
 
 def display_student_zipcode(username):
-    return student_details[username]["zip_code"]
+    return student_details[username]["student_address"]["zip_code"]
 
 
 
