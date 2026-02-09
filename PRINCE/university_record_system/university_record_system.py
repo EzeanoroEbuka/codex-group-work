@@ -75,8 +75,8 @@ def add_new_course():
             count = count + 1
         option = "YES"
         while option != "NO":
-            add_course = input("Please enter course you want to add: ")
-            if add_course.capitalize() in student_records[verify]["course"] and add_course.capitalize() in courses:
+            add_course = input("Please enter course you want to add: ").capitalize()
+            if add_course.capitalize() not in student_records[verify]["course"] and add_course.capitalize() in courses:
                 student_records[verify]["course"].append(add_course)
                 option = input("Do you want to add another course...Please enter yes or no: ").upper()
             else:
@@ -85,15 +85,18 @@ def add_new_course():
         print({verify}, "Not Found")
 
 
-def remove_course():
+def remove_student_course():
     verify = input("Enter student ID: ")
     if verify in student_records:
         print(student_records[verify]["course"])
-        remove_course = input("Please enter course you want to remove: ")
-        if remove_course.capitalize() in student_records[verify]["course"] and remove_course.capitalize() in courses:
-            student_records[verify]["course"].pop(remove_course)
-        else:
-            print({remove_course}, "Invalid or doesnt exist")
+        option = "YES"
+        while option != "NO":
+            remove_course = input("Please enter course you want to remove: ").capitalize()
+            if remove_course.capitalize() in student_records[verify]["course"] and remove_course.capitalize() in courses:
+                student_records[verify]["course"].pop(remove_course)
+                option = input("Do you want to remove another course...Please enter yes or no: ").upper()
+            else:
+                print({remove_course}, "Invalid or doesnt exist")
     else:
         print({verify}, "Not Found")
 

@@ -35,7 +35,7 @@ while user_input != 0:
         case 5:
             students.add_new_course()
         case 6:
-            students.remove_course()
+            students.remove_student_course()
         case 7:
             students.update_various_fields()
         case 8:
