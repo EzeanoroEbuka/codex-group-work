@@ -30,12 +30,27 @@ def display_student_records(username):
 
 
 def display_student_courses(username):
-    courses = student_details.get(username)
+    courses = student_details[username].get("courses")
+    if courses is None:
+        return "Course not found"
     return student_details[username]["courses"]
 
-def display_student_zipcode(username):
-    return student_details[username]["student_address"]["zip_code"]
 
+def display_student_zipcode(username):
+    if username in student_details:
+        return student_details[username]["student_address"]["zip_code"]
+    return "Student Zip-code not found"
+
+
+def display_student_city(username):
+    if username in student_details:
+        return student_details[username]["student_address"]["city"]
+    return "Student not found"
+
+
+
+def display_the_number_of_all_students():
+    return len(student_details)
 
 
 
