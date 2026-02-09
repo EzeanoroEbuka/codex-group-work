@@ -1,4 +1,4 @@
-from SAMUEL.university_record_input_handler import *
+from university_record_input_handler import *
 
 
 def menu():
