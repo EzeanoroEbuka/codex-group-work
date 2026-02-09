@@ -1,6 +1,5 @@
 import unittest
-import student_and_university_services as student_module
-from student_and_university_services import *
+import SAMUEL.student_and_university_services as student_module
 
 
 class TestStudentManagement(unittest.TestCase):
@@ -27,74 +26,74 @@ class TestStudentManagement(unittest.TestCase):
 
 
     def test_update_student_name_changes_name(self):
-        update_student_name("id1", "Sam")
+        student_module.update_student_name("id1", "Sam")
         self.assertEqual(
-            get_student_by_id("id1")["student_info"]["Name"],
+            student_module.get_student_by_id("id1")["student_info"]["Name"],
             "Sam"
         )
 
     def test_update_student_age_changes_age(self):
-        update_student_age("id1", 21)
+        student_module.update_student_age("id1", 21)
         self.assertEqual(
-            get_student_by_id("id1")["student_info"]["Age"],
+            student_module.get_student_by_id("id1")["student_info"]["Age"],
             21
         )
 
     def test_update_student_city_changes_city(self):
-        update_student_city("id1", "Ibadan")
+        student_module.update_student_city("id1", "Ibadan")
         self.assertEqual(
-            get_student_by_id("id1")["student_info"]["Address"]["City"],
+            student_module.get_student_by_id("id1")["student_info"]["Address"]["City"],
             "Ibadan"
         )
 
     def test_update_student_zip_code_changes_zip_code(self):
-        update_student_zip_code("id1", "111111")
+        student_module.update_student_zip_code("id1", "111111")
         self.assertEqual(
-            get_student_by_id("id1")["student_info"]["Address"]["Zip_code"],
+            student_module.get_student_by_id("id1")["student_info"]["Address"]["Zip_code"],
             "111111"
         )
 
     def test_add_course_successfully(self):
-        result = add_student_courses("id1", "Math")
+        result = student_module.add_student_courses("id1", "Math")
         self.assertEqual(result, "course added successfully")
-        self.assertIn("Math", get_student_courses("id1"))
+        self.assertIn("Math", student_module.get_student_courses("id1"))
 
     def test_add_existing_course_returns_error(self):
-        add_student_courses("id1", "Math")
-        result = add_student_courses("id1", "Math")
+        student_module.add_student_courses("id1", "Math")
+        result = student_module.add_student_courses("id1", "Math")
         self.assertEqual(result, "course already exists")
 
     def test_add_unavailable_course_returns_error(self):
-        result = add_student_courses("id1", "Dancing")
+        result = student_module.add_student_courses("id1", "Dancing")
         self.assertEqual(result, "course not available for student department")
 
     def test_update_course_successfully(self):
-        add_student_courses("id1", "Math")
-        result = update_student_course("id1", "Math", "Physics")
+        student_module.add_student_courses("id1", "Math")
+        result = student_module.update_student_course("id1", "Math", "Physics")
         self.assertEqual(result, "course updated successfully")
-        self.assertIn("Physics", get_student_courses("id1"))
+        self.assertIn("Physics", student_module.get_student_courses("id1"))
 
     def test_update_non_existing_course_returns_error(self):
-        result = update_student_course("id1", "Chemistry", "Physics")
+        result = student_module.update_student_course("id1", "Chemistry", "Physics")
         self.assertEqual(result, "old course not found")
 
     def test_delete_course_successfully(self):
-        add_student_courses("id1", "Math")
-        result = delete_student_course("id1", "Math")
+        student_module.add_student_courses("id1", "Math")
+        result = student_module.delete_student_course("id1", "Math")
         self.assertEqual(result, "course removed successfully")
-        self.assertNotIn("Math", get_student_courses("id1"))
+        self.assertNotIn("Math", student_module.get_student_courses("id1"))
 
     def test_delete_non_existing_course_returns_error(self):
-        result = delete_student_course("id1", "Biology")
+        result = student_module.delete_student_course("id1", "Biology")
         self.assertEqual(result, "course not found")
 
 
     def test_check_student_has_course_returns_true(self):
-        add_student_courses("id1", "Math")
-        self.assertTrue(check_student_has_course("id1", "Math"))
+        student_module.add_student_courses("id1", "Math")
+        self.assertTrue(student_module.check_student_has_course("id1", "Math"))
 
     def test_check_student_has_course_returns_false(self):
-        self.assertFalse(check_student_has_course("id1", "Physics"))
+        self.assertFalse(student_module.check_student_has_course("id1", "Physics"))
 
 
 if __name__ == "__main__":
