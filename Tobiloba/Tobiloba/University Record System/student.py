@@ -10,33 +10,6 @@ courses_list = {
     "Business"
 }
 
-# demo_student =
-
-#     students_database[username] = {
-#     "unique_id": "STU11111",
-#     "name": "John Paul",
-#     "age": 20,
-#     "courses": ["Mathematics", "Physics", "Computer Science"],
-#     "address": {
-#         "city": "Lagos",
-#         "zip_code": "12345",
-#     }
-
-
-# # demo_student2 = {
-# #     "unique_id": "STU22222",
-# #     "name": "Jane Smith",
-# #     "age": 19,
-# #     "courses": ["Biology", "Chemistry", "Geography"],
-# #     "address": {
-# #         "city": "Lagos",
-# #         "zip_code": "12890",
-# #     }
-# # }
-
-# # student_record.append(demo_student)
-# # student_record.append(demo_student2) 
-
 def create_student(username, name, age, courses, city, zip_code):
     students_database[username] = {
         "name": name,
@@ -47,6 +20,7 @@ def create_student(username, name, age, courses, city, zip_code):
             "zip_code": zip_code,
         }
     }
+    print(f"Student {name} created successfully.")
     
 def display_Student(username):
     if username in students_database:
