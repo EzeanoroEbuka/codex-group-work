@@ -81,9 +81,8 @@ def display_menu():
                         case 4: get_number_of_students()
                         case 5: get_student_info()
                         case 6: break
-            case 4: display_students_records()
-            case 5: display_menu()
-            case 0: option == 0
+            case 5: display_students_records()
+            case 0: break
     print("Exiting....")
 
 
