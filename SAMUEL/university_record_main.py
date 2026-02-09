@@ -1,5 +1,3 @@
-from unittest import case
-
 from SAMUEL.university_record_input_handler import *
 
 
