@@ -12,3 +12,17 @@ class UniversityRecord:
         }
 
         return student_profile
+
+
+    def department_courses(self):
+        COURSES = (
+            "Math", "Physics", "Computer Science", "Biology", "Chemistry",
+        "Statistics", "English", "Economics", "History", "Philosophy",
+        "Sociology", "Political Science", "Geography", "Psychology", "Art",
+        "Music", "Engineering", "Law", "Medicine", "Business"
+        )
+
+        return COURSES
+
+
+
