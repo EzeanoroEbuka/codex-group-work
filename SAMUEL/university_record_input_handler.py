@@ -1,5 +1,7 @@
 import re
 
+from samba.dcerpc.dcerpc import response
+
 from SAMUEL.university_record_output_handler import *
 
 def validate_name(name):
@@ -99,6 +101,7 @@ def update_student_zip_code():
 
 
 def add_course():
+
     student_id = input("Enter student id: ").strip()
     while not validate_student_id(student_id):
         student_id = input("Id is a mixture of alphabet and digits and must be more than two character: ").strip()
@@ -106,13 +109,20 @@ def add_course():
     while not id_exists(student_id):
         student_id = input("Id do not exist, enter valid id:  ").strip()
 
-    print("Choose From the courses Below")
-    display_departmental_courses()
+    response = ""
+    while response != "NO":
+        print("Choose From the courses Below")
+        display_departmental_courses()
 
-    course = input("Enter course name: ").capitalize()
-    while not validate_name(course):
-        course = input("Must be all alphabet!! Enter again: ").capitalize()
-    add_students_course(student_id,course)
+        course = input("Enter course name: ").capitalize()
+        while not validate_name(course):
+            course = input("Must be all alphabet!! Enter again: ").capitalize()
+        add_students_course(student_id,course)
+
+        response = input("Add another course(YES/NO): ").upper()
+
+
+
 
 def update_course():
     student_id = input("Enter student id: ").strip()

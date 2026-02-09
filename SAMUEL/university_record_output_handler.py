@@ -110,6 +110,8 @@ def display_individual_info(student_id):
     if id_exist(student_id):
         info = get_student_info(student_id)
         print("------------------------------")
+        print("     STUDENT RECORD    ")
+        print("------------------------------")
         print(info)
     else:
         print("------------------------------")
