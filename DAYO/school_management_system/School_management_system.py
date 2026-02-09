@@ -21,6 +21,8 @@ def get_student_courses(username):
         return username, all_student_records["courses"]
     return None
 
+
+
 def get_student_zip_codes(username):
     if username in all_student_records:
         return username, all_student_records ["address"]["zip_codes"]
