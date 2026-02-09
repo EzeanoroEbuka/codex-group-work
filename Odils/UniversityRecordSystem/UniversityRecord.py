@@ -1,8 +1,8 @@
-
 class UniversityRecord:
-    def create_student_profile(self, name, age, courses, address, zipcode, city):
-        student_profile = {
+    def create_student_profile(self,  name, username, age, courses, address, zipcode, city):
+        student_record = {
             "name" : name,
+            "username" : username,
             "age" : age,
             "courses" : courses,
             "address" : {
@@ -11,7 +11,7 @@ class UniversityRecord:
             }
         }
 
-        return student_profile
+        return student_record
 
 
     def department_courses(self):
@@ -24,5 +24,6 @@ class UniversityRecord:
 
         return COURSES
 
+    def display_student_record(self, username):
 
 
