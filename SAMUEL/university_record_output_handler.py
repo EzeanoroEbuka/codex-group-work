@@ -93,8 +93,5 @@ def display_individual_info(student_id):
         print("------------------------------")
         print(info)
 
-
-
-
 def display_departmental_courses():
     print(f"{list(available_courses)}")
