@@ -42,6 +42,16 @@ class UniversityRecord:
         city = self.university_records[username].get("city")
 
 
+    def add_new_course_to_student_record(self, username, student_record, new_course):
+        for key, value in student_record.keys():
+            if value == new_course:
+                print("Course already exists")
+            else:
+                self.university_records[username].append({key: value})
+
+
+
+
 
 
 
