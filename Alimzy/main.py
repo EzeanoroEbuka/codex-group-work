@@ -1,5 +1,8 @@
 
 
+import utils.http_session
+import utils.transport
+import utils.session
 all_students = {}
 
 DEPARTMENT_COURSES = ("Math", "Physics", "Computer Science", "Biology", "Chemistry",
