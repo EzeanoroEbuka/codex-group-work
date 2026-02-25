@@ -29,7 +29,7 @@ def create_student():
         student_id = input("Id already exist choose another: ").strip()
 
     student_age = input("Enter student age: ").strip()
-    while not student_age.isdigit() and 0 < int(student_age) < 50:
+    while not student_age.isdigit() and not 0 < int(student_age) < 50:
         student_age = input("Enter valid age: ").strip()
 
     student_city = input("Enter student city: ").strip().upper()
