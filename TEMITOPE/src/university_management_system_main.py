@@ -1,6 +1,4 @@
-from university_management_system_function import create_student_record, display_student_record, \
-    display_student_courses, display_student_zip_code, display_student_city, add_course, remove_course, \
-    update_student_record, overall_number_of_students
+from university_management_system_function import *
 
 
 def main_menu():
